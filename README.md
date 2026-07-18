@@ -1,286 +1,52 @@
-# 📊 E-Commerce Customer Behavior & Business Analysis
+# E-commerce Sales & Promotion Analytics
 
-## 📌 Project Overview
+End-to-end analytics project on 160K+ e-commerce clickstream events — covering SQL-based data cleaning, Python EDA, and an interactive Power BI dashboard to track revenue, customer behavior, and promotion effectiveness.
 
-This project focuses on analyzing customer behavior, pricing strategies, promotional effectiveness, and sales performance for a leading e-commerce platform using **Power BI**.
+## Overview
 
-The analysis helps uncover how customers interact across the purchase funnel — from product views to final purchases — while identifying opportunities to improve conversion rates, customer engagement, and overall business revenue.
+This project analyzes user browsing and purchase events from an e-commerce platform (Oct–Nov 2019) alongside a promotions calendar, to answer:
+- Where is revenue coming from (brand, category, state, channel, time of day)?
+- How do customers move through the funnel — View → Cart → Purchase?
+- Are promotional discounts actually driving incremental sales?
 
----
+## Tech Stack
 
-## 🎯 Business Objective
+| Layer | Tools |
+|---|---|
+| Database | SQL Server |
+| Data Cleaning & Aggregation | T-SQL (views for KPIs, revenue breakdowns, funnel, promotions) |
+| EDA & Feature Engineering | Python (pandas, numpy, matplotlib, SQLAlchemy) |
+| Visualization | Power BI |
 
-The primary objectives of this project are to:
+## Repository Contents
 
-* Analyze customer behavior across the purchase funnel
-* Understand traffic and conversion trends
-* Evaluate pricing and discount strategies
-* Measure promotion effectiveness
-* Identify high-performing brands and categories
-* Generate actionable insights for revenue optimization
+| File | Description |
+|---|---|
+| `Sales_Data_Ecommerce.csv` | Raw clickstream data — 160,000 events (View/Cart/Purchase) across users, products, and sessions |
+| `Promotion.csv` | Promotion calendar — 61 records mapping discount % to product and date |
+| `ecomm_analysis.sql` | Data quality checks, KPI/revenue/funnel queries, and reusable SQL views |
+| `Ecommerce_Analytics.ipynb` | Python notebook — data cleaning, merging, feature engineering, and EDA |
+| `Ecommerce_Analysis.pbix` | Power BI dashboard (Executive Overview + Marketing & Promotion Effectiveness) |
 
----
+## Dataset
 
-## 🏢 Business Context
+**Sales data** (160,000 rows, 18 columns): user ID, event date/time/hour, channel (App/Browser), event type (View/Cart/Purchase), product ID, category/sub-categories, brand, price, session ID, state, and user score.
 
-The client is a leading e-commerce platform aiming to better understand customer interaction behavior over a two-month period.
+**Promotion data** (61 rows): promotion ID, date, discount %, and the product it applied to.
 
-The dataset captures user activities such as:
+## Workflow
 
-* Product Views
-* Add-to-Cart Actions
-* Purchases
+1. **SQL layer** — Validated row counts and null values, removed fully-null promotion rows, and built reusable views (`vw_ExecutiveKPIs`, `vw_RevenueByBrand`, `vw_RevenueByCategory`, `vw_RevenueByState`, `vw_CustomerFunnel`, `vw_PromotionPerformance`) joining sales to promotions on product ID and date.
+2. **Python layer** — Loaded data via SQLAlchemy, removed 38 duplicate rows, converted date types, merged sales with promotions, engineered `revenue` and `promotion_flag` fields, and ran EDA across the funnel, pricing distribution, and revenue by brand/category/state/hour/promotion.
+3. **Power BI layer** — Built a two-page interactive dashboard:
+   - **Executive Overview**: KPI cards, revenue by brand/category (bar charts), category treemap, and revenue trend lines, with slicers for channel/state/category/date.
+   - **Marketing & Promotion Effectiveness**: conversion funnel, event-type breakdown, revenue by promotion, and discount-vs-revenue combo chart.
 
-across multiple platforms including:
+## Key Insights
 
-* Web Browser
-* Mobile App
+- **Funnel**: 125,925 Views → 19,409 Carts (15.4% conversion) → 14,628 Purchases (~75% Cart→Purchase conversion). The biggest drop-off is View → Cart, making cart conversion the primary growth lever.
+- **Revenue concentration**: Apple leads brand revenue (₹3.08M), more than double Samsung (₹1.29M). Electronics dominates category revenue (₹4.97M), far ahead of Appliances (₹0.37M) and Computers (₹0.31M).
+- **Regional performance**: Revenue is fairly balanced across the top 10 states (₹119K–₹134K), led by MS, IA, and MD.
+- **Time-of-day**: Revenue peaks 8–11 AM (~₹420K/hour) and drops below ₹100K/hour after 8 PM — mornings are the most profitable window.
+- **Promotion effectiveness**: Promotional sales (₹23.1K) account for under 1% of total revenue (₹5.62M non-promotional) — indicating current promotions have minimal measurable impact or very limited promotional coverage relative to overall catalog activity.
 
-The project also incorporates promotional and pricing data to evaluate campaign effectiveness and sales impact.
-
----
-
-# 🔍 Key Business Focus Areas
-
-## 🛒 Customer Funnel Analysis
-
-Analyzed customer journey stages:
-
-* View → Cart → Purchase
-
-to identify drop-offs and conversion bottlenecks.
-
-## 💰 Pricing & Promotion Analysis
-
-Evaluated:
-
-* Discount effectiveness
-* Pricing strategies
-* Revenue contribution from promotions
-
-to understand how pricing influences customer purchasing behavior.
-
-## 📈 Traffic & Conversion Trends
-
-Studied:
-
-* Peak traffic hours
-* Daily & weekly engagement patterns
-* Platform-wise customer activity
-
-to identify customer engagement trends.
-
-## 🏷️ Brand & Category Performance
-
-Analyzed:
-
-* Top-performing brands
-* High-revenue categories
-* Underperforming segments
-
-for better inventory and marketing decisions.
-
-## 🚀 Conversion Rate Optimization
-
-Focused on identifying opportunities to improve:
-
-* Purchase conversion
-* Customer retention
-* Revenue generation
-
----
-
-## 🛠️ Tools & Technologies Used
-
-* **Power BI** – Interactive dashboard creation & visualization
-* **DAX** – Custom KPIs and calculated measures
-* **Power Query** – Data cleaning & transformation
-
----
-
-# 📊 Dashboard Highlights
-
-## 📌 KPI Overview
-
-Interactive dashboard displaying:
-
-* Revenue
-* Conversion Rate
-* User Traffic
-* Orders
-* Engagement Metrics
-
----
-
-## 🔄 Funnel Analysis Dashboard
-
-Visualized customer movement across:
-
-* Product Views
-* Cart Additions
-* Purchases
-
-to identify major conversion drop-offs.
-
----
-
-## 💸 Pricing & Promotion Dashboard
-
-Analyzed:
-
-* Discount impact on sales
-* Promotion performance
-* Revenue contribution by pricing strategies
-
----
-
-## ⏰ Traffic Trend Analysis
-
-Studied traffic patterns by:
-
-* Time of day
-* Day of week
-* Platform (App vs Browser)
-
-to understand customer activity behavior.
-
----
-
-## 🏷️ Category & Brand Performance
-
-Compared:
-
-* Product category sales
-* Brand-wise revenue
-* Conversion performance
-
-to identify business growth opportunities.
-
----
-
-# 📈 Key Insights
-
-## 📉 Funnel Drop-Offs Identified
-
-While overall user engagement was high, significant drop-offs were observed between:
-
-* Product views
-* Add-to-cart actions
-* Final purchases
-
-highlighting opportunities for conversion optimization.
-
----
-
-## 🌙 Peak User Activity Trends
-
-Customer activity was highest during:
-
-* Evening hours
-* Weekends
-
-indicating ideal time windows for targeted promotions and campaigns.
-
----
-
-## 📱 Platform Usage Analysis
-
-Traffic was found to be almost evenly distributed between:
-
-* Mobile App
-* Browser
-
-suggesting no strong customer preference toward a single platform.
-
----
-
-## 📈 Sales Trend Analysis
-
-Sales remained relatively stable throughout most months, with a noticeable spike observed during:
-
-* October
-* November
-
-likely influenced by seasonal demand and promotional campaigns.
-
----
-
-## 💰 Revenue Opportunity Gap
-
-Potential revenue was significantly higher than actual realized revenue, indicating:
-
-* Missed conversion opportunities
-* Inefficient funnel performance
-* Scope for better pricing & promotion strategies
-
----
-
-# 💡 Business Recommendations
-
-## ✅ Improve Conversion Funnel
-
-Focus on reducing drop-offs by:
-
-* Simplifying checkout flow
-* Improving product pages
-* Enhancing cart recovery strategies
-
----
-
-## ✅ Optimize Pricing Strategies
-
-Implement:
-
-* Dynamic pricing
-* Competitive pricing models
-* Personalized discounts
-
-to maximize sales and profitability.
-
----
-
-## ✅ Enhance User Experience
-
-Since traffic is balanced across both platforms:
-
-* Improve both App & Browser experience equally
-* Optimize UI/UX for smoother navigation and purchases
-
----
-
-## ✅ Prioritize High-Performing Categories
-
-Increase visibility and promotions for:
-
-* High-performing categories
-* Best-selling brands
-
-while improving underperforming segments with better marketing strategies.
-
----
-
-## 📦 Deliverables
-
-The project includes:
-
-* Interactive Power BI Dashboard
-* KPI & Funnel Analysis
-* Pricing & Promotion Insights
-* DAX-Based Calculated Measures
-* Business Insights Report
-* Cleaned & Structured Data Model
-
----
-
-
-## ✅ Conclusion
-
-The analysis reveals that although customer interaction and traffic are strong, **conversion efficiency remains one of the biggest business challenges**.
-
-Pricing strategies and promotional campaigns strongly influence customer behavior, but their impact is often short-term. By improving the purchase funnel, optimizing pricing strategies, and enhancing user experience, the business can significantly increase conversion rates, customer engagement, and overall revenue performance.
-
----
-
-## ⭐ Project Outcome
-
-This project demonstrates how Business Intelligence tools like Power BI can transform raw customer interaction data into actionable business insights that support strategic decision-making and revenue growth.
