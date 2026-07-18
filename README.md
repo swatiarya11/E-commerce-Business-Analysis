@@ -45,8 +45,8 @@ This project analyzes user browsing and purchase events from an e-commerce platf
 ## Key Insights
 
 - **Funnel**: 125,925 Views → 19,409 Carts (15.4% conversion) → 14,628 Purchases (~75% Cart→Purchase conversion). The biggest drop-off is View → Cart, making cart conversion the primary growth lever.
-- **Revenue concentration**: Apple leads brand revenue (₹3.08M), more than double Samsung (₹1.29M). Electronics dominates category revenue (₹4.97M), far ahead of Appliances (₹0.37M) and Computers (₹0.31M).
-- **Regional performance**: Revenue is fairly balanced across the top 10 states (₹119K–₹134K), led by MS, IA, and MD.
-- **Time-of-day**: Revenue peaks 8–11 AM (~₹420K/hour) and drops below ₹100K/hour after 8 PM — mornings are the most profitable window.
-- **Promotion effectiveness**: Promotional sales (₹23.1K) account for under 1% of total revenue (₹5.62M non-promotional) — indicating current promotions have minimal measurable impact or very limited promotional coverage relative to overall catalog activity.
+- **Revenue concentration**: Apple leads brand revenue ($3.08M), more than double Samsung ($1.29M). Electronics dominates category revenue ($4.97M), far ahead of Appliances ($0.37M) and Computers ($0.31M).
+- **Regional performance**: Revenue is fairly balanced across the top 10 states ($119K–$134K), led by MS, IA, and MD.
+- **Time-of-day**: Revenue peaks 8–11 AM (~$420K/hour) and drops below $100K/hour after 8 PM — mornings are the most profitable window.
+- **Promotion effectiveness**: Promotions contributed $1.18M (21%) of total revenue, while $4.47M (79%) of revenue came from non-promotional sales, suggesting promotions support revenue growth but regular sales remain the primary business driver.
 
