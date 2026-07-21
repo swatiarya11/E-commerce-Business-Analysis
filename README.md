@@ -1,52 +1,96 @@
 # E-commerce Sales & Promotion Analytics
 
-End-to-end analytics project on 160K+ e-commerce clickstream events — covering SQL-based data cleaning, Python EDA, and an interactive Power BI dashboard to track revenue, customer behavior, and promotion effectiveness.
+End-to-end analytics project on **160K+ e-commerce clickstream events**, covering SQL-based data cleaning, Python EDA, interactive Power BI dashboards, and AI-powered executive business reporting using Google Gemini API.
 
-## Overview
+---
 
-This project analyzes user browsing and purchase events from an e-commerce platform (Oct–Nov 2019) alongside a promotions calendar, to answer:
+# Overview
+
+This project analyzes user browsing and purchase events from an e-commerce platform (Oct–Nov 2019) alongside a promotions calendar to answer:
+
 - Where is revenue coming from (brand, category, state, channel, time of day)?
-- How do customers move through the funnel — View → Cart → Purchase?
-- Are promotional discounts actually driving incremental sales?
+- How do customers move through the funnel — **View → Cart → Purchase**?
+- Are promotional discounts driving incremental sales?
+- How can AI automatically generate executive business insights from business KPIs?
 
-## Tech Stack
+---
+
+# Tech Stack
 
 | Layer | Tools |
-|---|---|
+|--------|-------|
 | Database | SQL Server |
-| Data Cleaning & Aggregation | T-SQL (views for KPIs, revenue breakdowns, funnel, promotions) |
-| EDA & Feature Engineering | Python (pandas, numpy, matplotlib, SQLAlchemy) |
+| Data Cleaning & Aggregation | T-SQL (Views & KPI Aggregation) |
+| EDA & Feature Engineering | Python (Pandas, NumPy, Matplotlib, SQLAlchemy) |
 | Visualization | Power BI |
+| AI Reporting | Google Gemini API, Prompt Engineering |
 
-## Repository Contents
+---
+
+# Repository Contents
 
 | File | Description |
-|---|---|
-| `Sales_Data_Ecommerce.csv` | Raw clickstream data — 160,000 events (View/Cart/Purchase) across users, products, and sessions |
-| `Promotion.csv` | Promotion calendar — 61 records mapping discount % to product and date |
-| `ecomm_analysis.sql` | Data quality checks, KPI/revenue/funnel queries, and reusable SQL views |
-| `Ecommerce_Analytics.ipynb` | Python notebook — data cleaning, merging, feature engineering, and EDA |
-| `Ecommerce_Analysis.pbix` | Power BI dashboard (Executive Overview + Marketing & Promotion Effectiveness) |
+|------|-------------|
+| Sales_Data_Ecommerce.csv | Raw clickstream data (~160K events) |
+| Promotion.csv | Promotion calendar (61 records) |
+| ecomm_analysis.sql | Data cleaning, KPI queries and reusable SQL views |
+| Ecommerce_Analytics.ipynb | Data cleaning, EDA, feature engineering and AI report generation |
+| Ecommerce_Analysis.pbix | Power BI dashboards (Executive Overview & Marketing & Promotion Effectiveness) |
+| ai_summary.md | AI-generated Executive Business Report |
 
-## Dataset
+---
 
-**Sales data** (160,000 rows, 18 columns): user ID, event date/time/hour, channel (App/Browser), event type (View/Cart/Purchase), product ID, category/sub-categories, brand, price, session ID, state, and user score.
+# Dataset
 
-**Promotion data** (61 rows): promotion ID, date, discount %, and the product it applied to.
+**Sales data (160K rows, 18 columns):** User ID, event date/time, channel, event type (View/Cart/Purchase), product ID, category, brand, price, session ID, state, and customer score.
 
-## Workflow
+**Promotion data (61 rows):** Promotion ID, product ID, discount %, and promotion date.
 
-1. **SQL layer** — Validated row counts and null values, removed fully-null promotion rows, and built reusable views (`vw_ExecutiveKPIs`, `vw_RevenueByBrand`, `vw_RevenueByCategory`, `vw_RevenueByState`, `vw_CustomerFunnel`, `vw_PromotionPerformance`) joining sales to promotions on product ID and date.
-2. **Python layer** — Loaded data via SQLAlchemy, removed 38 duplicate rows, converted date types, merged sales with promotions, engineered `revenue` and `promotion_flag` fields, and ran EDA across the funnel, pricing distribution, and revenue by brand/category/state/hour/promotion.
-3. **Power BI layer** — Built a two-page interactive dashboard:
-   - **Executive Overview**: KPI cards, revenue by brand/category (bar charts), category treemap, and revenue trend lines, with slicers for channel/state/category/date.
-   - **Marketing & Promotion Effectiveness**: conversion funnel, event-type breakdown, revenue by promotion, and discount-vs-revenue combo chart.
+---
 
-## Key Insights
+# Workflow
 
-- **Funnel**: 125,925 Views → 19,409 Carts (15.4% conversion) → 14,628 Purchases (~75% Cart→Purchase conversion). The biggest drop-off is View → Cart, making cart conversion the primary growth lever.
-- **Revenue concentration**: Apple leads brand revenue ($3.08M), more than double Samsung ($1.29M). Electronics dominates category revenue ($4.97M), far ahead of Appliances ($0.37M) and Computers ($0.31M).
-- **Regional performance**: Revenue is fairly balanced across the top 10 states ($119K–$134K), led by MS, IA, and MD.
-- **Time-of-day**: Revenue peaks 8–11 AM (~$420K/hour) and drops below $100K/hour after 8 PM — mornings are the most profitable window.
-- **Promotion effectiveness**: Promotions contributed $1.18M (21%) of total revenue, while $4.47M (79%) of revenue came from non-promotional sales, suggesting promotions support revenue growth but regular sales remain the primary business driver.
+### SQL Layer
+- Validated data quality, removed invalid records, and created reusable SQL views for Executive KPIs, Revenue Analysis, Customer Funnel, and Promotion Performance.
 
+### Python Layer
+- Connected SQL Server using SQLAlchemy, cleaned and merged datasets, engineered business features, performed EDA, and analyzed revenue, customer funnel, and promotional performance.
+
+### Power BI Layer
+Built **2 interactive dashboards**:
+
+**Executive Overview**
+- KPI Cards
+- Revenue by Brand, Category & State
+- Revenue Trend Analysis
+- Interactive Slicers
+
+**Marketing & Promotion Effectiveness**
+- Customer Funnel
+- Promotion Performance
+- Event Distribution
+- Discount vs Revenue Analysis
+
+### AI Reporting Layer
+- Integrated **Google Gemini API** with Python to automatically generate executive business reports in Markdown, providing business insights, risks, and strategic recommendations from SQL-derived KPIs.
+
+---
+
+# Key Insights
+
+- **Customer Funnel:** 125,925 Views → 19,409 Carts (15.4%) → 14,628 Purchases (~75% Cart-to-Purchase conversion), with the largest drop-off occurring between **View → Cart**.
+- **Revenue Performance:** Apple generated **~$3.08M**, while Electronics contributed **~$4.97M**, making them the strongest revenue drivers.
+- **Promotion Effectiveness:** Promotions contributed **21%** of total revenue, while **79%** came from non-promotional sales.
+- **Time-of-Day Analysis:** Purchase activity peaked between **8–11 AM**, indicating the most profitable sales window.
+- **AI Executive Reporting:** Automated KPI interpretation using **Google Gemini API**, generating management-ready summaries and strategic business recommendations.
+
+---
+
+# Project Highlights
+
+- Processed **160K+ e-commerce clickstream events**
+- Built reusable SQL views for business KPIs
+- Performed end-to-end EDA using Python
+- Designed **2 interactive Power BI dashboards**
+- Automated executive reporting using **Google Gemini API**
+- Generated AI-powered business insights in Markdown format
